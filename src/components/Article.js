@@ -2,10 +2,9 @@ import React, { useState, useEffect } from 'react'
 
 export default function Article(props) {
   // Set Article state to fetched data values
-  const [images, setImages] = useState(props.data.thumbnails);
-  const [readTime, setReadTime] = useState();
+  const [images] = useState(props.data.thumbnails);
   const [commentCount, setCommentCount] = useState();
-  const [title, setTitle] = useState();
+  const [title] = useState(props.data.metadata.headline ? props.data.metadata.headline : props.data.metadata.title);
 
   useEffect(() => {
     // Get comment count using ID of article
@@ -19,7 +18,10 @@ export default function Article(props) {
   return (
     <div className="article">
       <img src={images[0].url} />
-      <label>{commentCount}</label>
+      <p>Time: {Math.floor(Math.random() * 30) + 1}m</p>
+      <p>Comments: {(commentCount > 0) ? commentCount : ''}</p>
+      <h3>{title}</h3>
+      <hr />
     </div>
   )
 }

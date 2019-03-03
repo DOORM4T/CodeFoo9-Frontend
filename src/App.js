@@ -1,13 +1,12 @@
 import React, { Component } from 'react'
-import Feed from './components/Feed'
+import Layout from './components/Layout'
 
 class App extends Component {
 
   render() {
     return (
       <div className="App">
-        My App!
-        <Feed />
+        <Layout />
       </div>
     );
   }

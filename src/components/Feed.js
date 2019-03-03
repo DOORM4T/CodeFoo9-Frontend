@@ -3,8 +3,8 @@ import Article from './Article'
 
 export default function Feed() {
   const [feed, setFeed] = useState([]);
-  const [index, setIndex] = useState(0);
-  const [count, setCount] = useState(5);
+  const [index] = useState(0);
+  const [count] = useState(20);
 
   useEffect(() => {
     console.log(feed)
