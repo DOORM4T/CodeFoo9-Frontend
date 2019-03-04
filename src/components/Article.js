@@ -26,13 +26,14 @@ export default function Article(props) {
       {/* Headline display. Object data names differ between Articles and Videos,
       so their respective properties must be chosen.*/}
       <h3>{metadata.headline ? metadata.headline : metadata.title}</h3>
-      <p> {metadata.duration ? `Duration: ${Moment(metadata.duration).format('h:mm')}` : ''} </p>
+      <p> {metadata.duration ? `Duration: ${convertDuration(metadata.duration)}` : ''} </p>
       <p>{props.data.contentType}</p>
       <hr />
     </div>
   )
 }
 
+// Time since article was published
 const sincePublication = (date) => {
   let pubDate = Moment.utc(date),
     now = Moment.utc(),
@@ -58,3 +59,17 @@ const sincePublication = (date) => {
   diff = now.diff(pubDate, 'hours');
 }
 
+// Convert video duration from minutes to format of hh:mm:ss
+const convertDuration = (duration) => {
+  let hours = Math.trunc(duration / 3600)
+  let minutes = Math.trunc((duration - hours) / 60)
+  let seconds = duration - minutes * 60
+  if (hours < 10)
+    hours = '0' + hours;
+  if (minutes < 10)
+    minutes = '0' + minutes;
+  if (seconds < 10)
+    seconds = '0' + seconds;
+
+  return `${(hours + '').substring(0, 2)}:${(minutes + '').substring(0, 2)}:${(seconds + '').substring(0, 2)}`;
+} 
