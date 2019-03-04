@@ -13,15 +13,24 @@ export default function Feed() {
   const filterBy = (type) => {
     if (type === filter)
       return;
-    setFilter(type);
-    setFeed([]);
-    setIndex(0);
+
+    // Add className to make feed fadeOut before fetching new content
+    document.querySelectorAll('.feed-article').forEach(item => {
+      item.classList.add('fade');
+    });
+    setTimeout(() => newState(type), 500);
+
 
     // Style active filter button
     document.querySelector('.active').classList.remove('active');
     document.querySelector(`.${type}`).classList.add('active');
   }
 
+  const newState = (type) => {
+    setFilter(type);
+    setFeed([]);
+    setIndex(0);
+  }
 
   // FETCH ARTICLES FROM API
   const fetchArticles = () => {
@@ -56,6 +65,7 @@ export default function Feed() {
       </div>
 
       <InfiniteScroll
+        id="feed-content"
         initialLoad={true}
         hasMore={true}
         threshold={800}
@@ -63,7 +73,7 @@ export default function Feed() {
       >
         {
           feed.map((item, i) => (
-            <li className="article" key={i}><Article data={item} /></li>
+            <li className="feed-article" key={i}><Article data={item} /></li>
           ))
         }
       </InfiniteScroll >
