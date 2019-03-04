@@ -1,0 +1,39 @@
+#article {
+  display:flex;
+  flex-direction: row;
+
+  label {
+    color: #b51012;
+    font-weight: bold;
+
+    span {
+      margin: 0 0.5rem;
+    }
+  }
+
+  img {
+    border-radius:4px;
+    cursor:pointer;
+    &:hover{
+      opacity:0.75;
+    }
+
+  }
+
+
+  #info {
+
+    h3 {
+      text-decoration:none;
+      word-break:break-all;
+      word-wrap: break-word;
+
+      cursor:pointer;
+      &:hover {
+        color: #4062bb;
+        text-decoration: underline;
+      }
+    }
+
+  }
+}

@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import Moment from 'moment'
+import 'font-awesome/css/font-awesome.min.css'
+import './_article.scss'
+
 
 export default function Article(props) {
   // Set Article state to fetched data values
@@ -17,18 +20,27 @@ export default function Article(props) {
   }, []);
 
   return (
-    <div className="article">
+    <div id="article">
       {/* Thumbnail //TODO: Responsive Thumbnail Sizes */}
       <img src={images[0].url} alt={metadata.slug} />
-      {/* Time since publication date */}
-      <p>Published: {sincePublication(metadata.publishDate)}</p>
-      <p>Comments: {(commentCount > 0) ? commentCount : ''}</p>
-      {/* Headline display. Object data names differ between Articles and Videos,
-      so their respective properties must be chosen.*/}
-      <h3>{metadata.headline ? metadata.headline : metadata.title}</h3>
-      <p> {metadata.duration ? `Duration: ${convertDuration(metadata.duration)}` : ''} </p>
-      <p>{props.data.contentType}</p>
-      <hr />
+      <p> {metadata.duration ? `${convertDuration(metadata.duration)}` : ''} </p>
+      <i className="fas fa-play-circle"></i>
+      <div id="info">
+        {/* Time since publication date */}
+        <label>{sincePublication(metadata.publishDate)}</label>
+        <label>
+          {(commentCount > 0) ? (
+            <React.Fragment>
+              <span> - </span>
+              < i className="far fa-comment" />
+              {commentCount}
+            </React.Fragment>
+          ) : ''}
+        </label>
+        {/* Headline display. Object data names differ between Articles and Videos,
+        so their respective properties must be chosen.*/}
+        <h3>{metadata.headline ? metadata.headline : metadata.title}</h3>
+      </div>
     </div>
   )
 }

@@ -1,11 +1,14 @@
 * {
   font-family: sans-serif;
+  box-sizing: border-box;
+  list-style: none;
 }
 
 body {
   margin:1rem;
   margin-top:-0.5rem;
   padding:1rem;
+  overflow-x:hidden;
 
   h1 {
     font-weight: bold;

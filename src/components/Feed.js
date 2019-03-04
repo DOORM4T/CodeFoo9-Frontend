@@ -50,9 +50,9 @@ export default function Feed() {
     // Render Feed
     <div id="feed-container">
       <div id="nav">
-        <button className="nav-btn latest active" onClick={() => filterBy('latest')}><i className="fa fa-clock-o" aria-hidden="true"></i>Latest</button>
-        <button className="nav-btn video" onClick={() => filterBy('video')}>ICON Videos</button>
-        <button className="nav-btn article" onClick={() => filterBy('article')}>ICON Articles</button>
+        <button className="nav-btn latest active" onClick={() => filterBy('latest')}><i className="fa fa-clock-o" aria-hidden="true" />Latest</button>
+        <button className="nav-btn video" onClick={() => filterBy('video')}><i className="fa fa-play" aria-hidden="true" /> Videos</button>
+        <button className="nav-btn article" onClick={() => filterBy('article')}><i className="fa fa-file-alt" aria-hidden="true" /> Articles</button>
       </div>
 
       <InfiniteScroll
