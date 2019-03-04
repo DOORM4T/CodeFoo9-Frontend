@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react'
+import Moment from 'moment'
 
 export default function Article(props) {
   // Set Article state to fetched data values
   const [images] = useState(props.data.thumbnails);
   const [commentCount, setCommentCount] = useState();
-  const [title] = useState(props.data.metadata.headline ? props.data.metadata.headline : props.data.metadata.title);
+  const [metadata] = useState(props.data.metadata);
 
   useEffect(() => {
     // Get comment count using ID of article
@@ -17,11 +18,17 @@ export default function Article(props) {
 
   return (
     <div className="article">
-      <img src={images[0].url} />
-      <p>Time: {Math.floor(Math.random() * 30) + 1}m</p>
+      <img src={images[0].url} alt={metadata.slug} />
+      <p>Published: {Moment(metadata.publishDate).fromNow()}</p>
       <p>Comments: {(commentCount > 0) ? commentCount : ''}</p>
-      <h3>{title}</h3>
+      {/* Headline display. Object data names differ between Articles and Videos,
+      so their respective properties must be chosen.*/}
+      <h3>{metadata.headline ? metadata.headline : metadata.title}</h3>
+      <p>{props.data.contentType}</p>
+      <p>{Moment(metadata.publishDate).startOf('minute').fromNow()}</p>
       <hr />
     </div>
   )
 }
+
+

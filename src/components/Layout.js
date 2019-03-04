@@ -14,10 +14,10 @@ export default function Layout() {
       <hr />
       <div id="nav">
         <button onClick={() => filterBy('latest')}>Latest</button>
-        <button onClick={() => filterBy('videos')}>Videos</button>
-        <button onClick={() => filterBy('articles')}>Articles</button>
+        <button onClick={() => filterBy('video')}>Videos</button>
+        <button onClick={() => filterBy('article')}>Articles</button>
       </div>
-      <Feed />
+      <Feed filter={filter} />
     </div>
   )
 }
