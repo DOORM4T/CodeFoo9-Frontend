@@ -1,0 +1,40 @@
+$red: #b51012; // IGN Red
+$nav-gray: #7c7d7d;
+
+@mixin easeOut {
+  transition:all 0.1s ease-out;
+}
+
+#feed-container {
+  padding-top:0.5rem;
+  display:flex;
+  flex-direction: row;
+
+  #nav {
+    margin-right:1.5rem;
+    display:flex;
+    flex-direction: column;
+    .nav-btn {
+      border:none;
+      background-color:#fff;
+      color:$nav-gray;
+      padding: 8px 24px;
+      border-radius: 4px;
+      width:30vw;
+      max-width:30vw;
+      font-size:16px;
+      cursor:pointer;
+
+      &:hover {
+        @include easeOut;
+        background-color:darken(#fff, 5);
+        color:#000;
+      }
+
+      &.active {
+        background-color:$red;
+        color:#fff;
+      }
+    }
+  }
+}

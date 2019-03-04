@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import InfiniteScroll from 'react-infinite-scroller'
 import Article from './Article'
+import './_feed.scss'
 
 export default function Feed() {
   const [feed, setFeed] = useState([])
@@ -14,16 +15,19 @@ export default function Feed() {
     setFilter(type);
     setFeed([]);
     setIndex(0);
+
+    // Style active filter button
+    document.querySelector('.active').classList.remove('active');
+    document.querySelector(`.${type}`).classList.add('active');
   }
 
 
   // FETCH ARTICLES FROM API
   const fetchArticles = () => {
-    // Increment Start (Index) as page scrolls.
-    // Timeout is set to prevent loading errors.
+    // Increment Start (Index) as page scrolls. Timeout is set to prevent loading errors.
     setTimeout(() => setIndex(index + count), 1000)
 
-    // Fetch Data Through CORS-anywhere as a proxy. 
+    // Fetch data through CORS-anywhere as a proxy. 
     const url = 'https://cors-anywhere.herokuapp.com/ign-apis.herokuapp.com/content/'
     // console.log(`${url}?startIndex=${index}&count=${count}`)
     fetch(`${url}?startIndex=${index}&count=${count}`)
@@ -43,23 +47,26 @@ export default function Feed() {
 
   return (
     // Render Feed
-    <InfiniteScroll
-      initialLoad={true}
-      hasMore={true}
-      threshold={800}
-      loadMore={fetchArticles}
-    >
+    <div id="feed-container">
       <div id="nav">
-        <button onClick={() => filterBy('latest')}>Latest</button>
-        <button onClick={() => filterBy('video')}>Videos</button>
-        <button onClick={() => filterBy('article')}>Articles</button>
+        <button className="nav-btn latest active" onClick={() => filterBy('latest')}>ICON Latest</button>
+        <button className="nav-btn video" onClick={() => filterBy('video')}>ICON Videos</button>
+        <button className="nav-btn article" onClick={() => filterBy('article')}>ICON Articles</button>
       </div>
-      {
-        feed.map((item, i) => (
-          <li key={i}><Article data={item} /></li>
-        ))
-      }
-    </InfiniteScroll >
+
+      <InfiniteScroll
+        initialLoad={true}
+        hasMore={true}
+        threshold={800}
+        loadMore={fetchArticles}
+      >
+        {
+          feed.map((item, i) => (
+            <li className="article" key={i}><Article data={item} /></li>
+          ))
+        }
+      </InfiniteScroll >
+    </div>
 
   )
 }

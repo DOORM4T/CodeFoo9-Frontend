@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import Feed from './Feed'
+import './_layout.scss'
 
 export default function Layout() {
 
