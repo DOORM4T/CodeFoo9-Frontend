@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import InfiniteScroll from 'react-infinite-scroller'
 import Article from './Article'
+import 'font-awesome/css/font-awesome.min.css'
 import './_feed.scss'
 
 export default function Feed() {
@@ -49,7 +50,7 @@ export default function Feed() {
     // Render Feed
     <div id="feed-container">
       <div id="nav">
-        <button className="nav-btn latest active" onClick={() => filterBy('latest')}>ICON Latest</button>
+        <button className="nav-btn latest active" onClick={() => filterBy('latest')}><i className="fa fa-clock-o" aria-hidden="true"></i>Latest</button>
         <button className="nav-btn video" onClick={() => filterBy('video')}>ICON Videos</button>
         <button className="nav-btn article" onClick={() => filterBy('article')}>ICON Articles</button>
       </div>
