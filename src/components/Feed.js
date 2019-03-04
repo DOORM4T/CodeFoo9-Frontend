@@ -18,7 +18,7 @@ export default function Feed() {
     document.querySelectorAll('.feed-article').forEach(item => {
       item.classList.add('fade');
     });
-    setTimeout(() => newState(type), 500);
+    setTimeout(() => newState(type), 300);
 
 
     // Style active filter button
@@ -35,7 +35,7 @@ export default function Feed() {
   // FETCH ARTICLES FROM API
   const fetchArticles = () => {
     // Increment Start (Index) as page scrolls. Timeout is set to prevent loading errors.
-    setTimeout(() => setIndex(index + count), 1000)
+    setTimeout(() => setIndex(index + count), 800)
 
     // Fetch data through CORS-anywhere as a proxy. 
     const url = 'https://cors-anywhere.herokuapp.com/ign-apis.herokuapp.com/content/'
@@ -59,9 +59,9 @@ export default function Feed() {
     // Render Feed
     <div id="feed-container">
       <div id="nav">
-        <button className="nav-btn latest active" onClick={() => filterBy('latest')}><i className="fa fa-clock-o" aria-hidden="true" />Latest</button>
-        <button className="nav-btn video" onClick={() => filterBy('video')}><i className="fa fa-play" aria-hidden="true" /> Videos</button>
-        <button className="nav-btn article" onClick={() => filterBy('article')}><i className="fa fa-file-alt" aria-hidden="true" /> Articles</button>
+        <button className="nav-btn latest active" onClick={() => filterBy('latest')}><i className="fa fa-clock-o" aria-hidden="true" /><label>Latest</label></button>
+        <button className="nav-btn video" onClick={() => filterBy('video')}><i className="fa fa-play" aria-hidden="true" /> <label>Videos</label></button>
+        <button className="nav-btn article" onClick={() => filterBy('article')}><i className="fa fa-file-alt" aria-hidden="true" /> <label>Articles</label></button>
       </div>
 
       <InfiniteScroll
@@ -73,7 +73,7 @@ export default function Feed() {
       >
         {
           feed.map((item, i) => (
-            <li className="feed-article" key={i}><Article data={item} /></li>
+            <div className="feed-article" key={i}><Article data={item} /></div>
           ))
         }
       </InfiniteScroll >

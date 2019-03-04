@@ -16,32 +16,37 @@ export default function Article(props) {
       .then(res => res.json())
       .then(data => setCommentCount(data.content[0].count))
       .catch(err => { throw err })
-
   }, []);
 
+
   return (
-    <div id="article">
-      {/* Thumbnail //TODO: Responsive Thumbnail Sizes */}
-      <img src={images[0].url} alt={metadata.slug} />
-      <p> {metadata.duration ? `${convertDuration(metadata.duration)}` : ''} </p>
-      <i className="fas fa-play-circle"></i>
-      <div id="info">
-        {/* Time since publication date */}
-        <label>{sincePublication(metadata.publishDate)}</label>
-        <label>
-          {(commentCount > 0) ? (
-            <React.Fragment>
-              <span> - </span>
-              < i className="far fa-comment" />
-              {commentCount}
-            </React.Fragment>
-          ) : ''}
-        </label>
-        {/* Headline display. Object data names differ between Articles and Videos,
+    // Fetched content
+    <>
+      <div id="article">
+        {/* Image */}
+        <img src={images[0].url ? images[0].url : ''} alt={metadata.slug} />
+        {/* Video Information */}
+        <p> {metadata.duration ? `${convertDuration(metadata.duration)}` : ''} </p>
+        <i className="fas fa-play-circle"></i>
+        <div id="info">
+          {/* Time since publication date */}
+          <label>{sincePublication(metadata.publishDate)}</label>
+          <label>
+            {(commentCount > 0) ? (
+              <React.Fragment>
+                <span> - </span>
+                < i className="far fa-comment" />
+                {commentCount}
+              </React.Fragment>
+            ) : ''}
+          </label>
+          {/* Headline display. Object data names differ between Articles and Videos,
         so their respective properties must be chosen.*/}
-        <h3>{metadata.headline ? metadata.headline : metadata.title}</h3>
+          <h3>{metadata.headline ? metadata.headline : metadata.title}</h3>
+        </div>
       </div>
-    </div>
+      <hr />
+    </>
   )
 }
 
@@ -68,7 +73,6 @@ const sincePublication = (date) => {
   diff = now.diff(pubDate, 'seconds');
   if (diff !== 0)
     return (diff + ' s');
-  diff = now.diff(pubDate, 'hours');
 }
 
 // Convert video duration from minutes to format of hh:mm:ss
@@ -82,6 +86,5 @@ const convertDuration = (duration) => {
     minutes = '0' + minutes;
   if (seconds < 10)
     seconds = '0' + seconds;
-
   return `${(hours + '').substring(0, 2)}:${(minutes + '').substring(0, 2)}:${(seconds + '').substring(0, 2)}`;
-} 
+}

@@ -10,9 +10,16 @@ body {
   padding:1rem;
   overflow-x:hidden;
 
-  h1 {
-    font-weight: bold;
-
+  #header {
+    font-family:sans-serif;
+    font-weight: bolder;
+    word-spacing: 0px;
+    line-height:10px;
+    font-size:48px;
   }
 
+  hr {
+    color: darken(#fff, 10);
+    opacity:0.5;
+  }
 }

@@ -1,16 +1,14 @@
 $red: #b51012; // IGN Red
 $nav-gray: #7c7d7d;
 
-
-
 #feed-container {
-  padding-top:0.5rem;
   display:flex;
   flex-direction: row;
-
+  margin-top:1.5rem;
+  
   .feed-article {
     &.fade {
-      animation: fadeOut 0.5s;
+      animation: fadeOut 0.3s;
       @keyframes fadeOut {
         from { opacity: 1; }
         to   { opacity: 0; }
@@ -33,13 +31,16 @@ $nav-gray: #7c7d7d;
       border:none;
       background-color:#fff;
       color:$nav-gray;
-      padding: 8px 24px;
+      padding: 12px 48px;
       border-radius: 4px;
-      width:30vw;
-      max-width:200px;
+      width:40vw;
+      max-width:300px;
       font-size:16px;
       line-height:24px;
       text-align:left;
+      label {
+        margin-left:1.5rem;
+      }
       cursor:pointer;
 
       // &:nth-child(1) {
