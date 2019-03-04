@@ -2,10 +2,20 @@ import React, { useState } from 'react'
 import InfiniteScroll from 'react-infinite-scroller'
 import Article from './Article'
 
-export default function Feed(props) {
+export default function Feed() {
   const [feed, setFeed] = useState([])
   const [index, setIndex] = useState(0)
   const [count] = useState(20)
+  const [filter, setFilter] = useState('latest')
+
+  const filterBy = (type) => {
+    if (type === filter)
+      return;
+    setFilter(type);
+    setFeed([]);
+    setIndex(0);
+  }
+
 
   // FETCH ARTICLES FROM API
   const fetchArticles = () => {
@@ -19,13 +29,13 @@ export default function Feed(props) {
     fetch(`${url}?startIndex=${index}&count=${count}`)
       .then(res => res.json())
       .then(data => {
-        if (props.filter === 'latest')
+        if (filter === 'latest')
           // Latest
           setFeed(feed.concat(data.data));
         else {
           // Filter by Article or Video
-          setFeed(feed.concat(data.data.filter(data => data.contentType === props.filter)));
-          // console.log(data.data.filter(data => data.contentType === props.filter))
+          setFeed(feed.concat(data.data.filter(data => data.contentType === filter)));
+          // console.log(data.data.filter(data => data.contentType === filter))
         }
       })
       .catch(err => { throw err })
@@ -41,6 +51,11 @@ export default function Feed(props) {
       // loader={<h4 key={0}>Loading...</h4>}
       loadMore={fetchArticles}
     >
+      <div id="nav">
+        <button onClick={() => filterBy('latest')}>Latest</button>
+        <button onClick={() => filterBy('video')}>Videos</button>
+        <button onClick={() => filterBy('article')}>Articles</button>
+      </div>
       {
         feed.map((item, i) => (
           <li key={i}><Article data={item} /></li>
