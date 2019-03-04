@@ -47,8 +47,6 @@ export default function Feed() {
       initialLoad={true}
       hasMore={true}
       threshold={800}
-      useCapture={false}
-      // loader={<h4 key={0}>Loading...</h4>}
       loadMore={fetchArticles}
     >
       <div id="nav">
