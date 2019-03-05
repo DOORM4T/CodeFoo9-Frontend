@@ -28,21 +28,20 @@ $nav-gray: #7c7d7d;
     display:flex;
     flex-direction: column;
     .nav-btn {
-     cursor:pointer;
-
+      cursor:pointer;
       border:none;
       background-color:#fff;
       color:$nav-gray;
       padding: 12px 48px;
       border-radius: 4px;
       width:40vw;
-      max-width:300px;
-      font-size:24px;
+      max-width:260px;
+      font-size:18px;
       line-height:24px;
+      outline:none;
       text-align:left;
       label {
-      cursor:pointer;
-
+        cursor:pointer;
         margin-left:1.6rem;
       }
 

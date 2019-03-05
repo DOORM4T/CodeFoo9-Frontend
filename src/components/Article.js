@@ -24,21 +24,23 @@ export default function Article(props) {
     <>
       <div id="article">
         {/* Image */}
-        <img src={images[0].url ? images[0].url : ''} alt={metadata.slug} />
+        <img src={images[2].url ? images[2].url : images[0].url} alt={metadata.slug} draggable={false} />
         {/* Video Information */}
-        <p> {metadata.duration ? `${convertDuration(metadata.duration)}` : ''} </p>
-        <i className="fas fa-play-circle"></i>
+        {
+          (props.data.contentType === 'video') ?
+            <div className="video-info">
+              <i className="fas fa-play-circle" />
+              <label> {convertDuration(metadata.duration)} </label>
+            </div>
+            : ''
+        }
         <div id="info">
           {/* Time since publication date */}
           <label>{sincePublication(metadata.publishDate)}</label>
           <label>
-            {(commentCount > 0) ? (
-              <React.Fragment>
-                <span> - </span>
-                < i className="far fa-comment" />
-                {commentCount}
-              </React.Fragment>
-            ) : ''}
+            <span> - </span>
+            < i className="far fa-comment" />
+            {(commentCount > 0) ? commentCount : ''}
           </label>
           {/* Headline display. Object data names differ between Articles and Videos,
         so their respective properties must be chosen.*/}
