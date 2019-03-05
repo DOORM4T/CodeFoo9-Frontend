@@ -4,22 +4,28 @@
   list-style: none;
 }
 
+
 body {
   margin:1rem;
   margin-top:-0.5rem;
   padding:1rem;
-  overflow-x:hidden;
+  &::-webkit-scrollbar {
+    // Hides scrollbar in Webkit browsers (Chrome, Safari, etc.).
+    // Scrollbar is hidden to better match the example.
+    display: none; 
+  }
 
   #header {
     font-family:sans-serif;
-    font-weight: bolder;
+    font-weight: 900;
     word-spacing: 0px;
     line-height:10px;
-    font-size:48px;
+    font-size:42px;
   }
 
   hr {
     color: darken(#fff, 10);
     opacity:0.5;
+    margin:1.5rem 0;
   }
 }

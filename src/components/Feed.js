@@ -18,7 +18,7 @@ export default function Feed() {
     document.querySelectorAll('.feed-article').forEach(item => {
       item.classList.add('fade');
     });
-    setTimeout(() => newState(type), 300);
+    setTimeout(() => newState(type), 50);
 
 
     // Style active filter button
@@ -34,25 +34,27 @@ export default function Feed() {
 
   // FETCH ARTICLES FROM API
   const fetchArticles = () => {
-    // Increment Start (Index) as page scrolls. Timeout is set to prevent loading errors.
-    setTimeout(() => setIndex(index + count), 800)
+    if (index <= 300) {
+      // Increment Start (Index) as page scrolls. Timeout is set to prevent loading errors.
+      setTimeout(() => setIndex(index + count), 1000)
 
-    // Fetch data through CORS-anywhere as a proxy. 
-    const url = 'https://cors-anywhere.herokuapp.com/ign-apis.herokuapp.com/content/'
-    // console.log(`${url}?startIndex=${index}&count=${count}`)
-    fetch(`${url}?startIndex=${index}&count=${count}`)
-      .then(res => res.json())
-      .then(data => {
-        if (filter === 'latest')
-          // Latest
-          setFeed(feed.concat(data.data));
-        else {
-          // Filter by Article or Video
-          setFeed(feed.concat(data.data.filter(data => data.contentType === filter)));
-          // console.log(data.data.filter(data => data.contentType === filter))
-        }
-      })
-      .catch(err => { throw err })
+      // Fetch data through CORS-anywhere as a proxy. 
+      const url = 'https://cors-anywhere.herokuapp.com/ign-apis.herokuapp.com/content/'
+      // console.log(`${url}?startIndex=${index}&count=${count}`)
+      fetch(`${url}?startIndex=${index}&count=${count}`)
+        .then(res => res.json())
+        .then(data => {
+          if (filter === 'latest')
+            // Latest
+            setFeed(feed.concat(data.data));
+          else {
+            // Filter by Article or Video
+            setFeed(feed.concat(data.data.filter(data => data.contentType === filter)));
+            // console.log(data.data.filter(data => data.contentType === filter))
+          }
+        })
+        .catch(err => { throw err })
+    }
   }
 
   return (
@@ -66,14 +68,13 @@ export default function Feed() {
 
       <InfiniteScroll
         id="feed-content"
-        initialLoad={true}
         hasMore={true}
-        threshold={800}
+        threshold={1000}
         loadMore={fetchArticles}
       >
         {
           feed.map((item, i) => (
-            <div className="feed-article" key={i}><Article data={item} /></div>
+            <div className="feed-article" id={`article-${i}`} key={i}><Article data={item} /></div>
           ))
         }
       </InfiniteScroll >

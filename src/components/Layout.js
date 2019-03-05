@@ -5,11 +5,13 @@ import './_layout.scss'
 export default function Layout() {
 
   return (
-    <div>
-      <h1 id="header">Latest News</h1>
-      <hr />
+    <div id="outer">
+      <div id="layout">
+        <h1 id="header">Latest News</h1>
+        <hr id="top-hr" />
 
-      <Feed />
+        <Feed />
+      </div>
     </div>
   )
 }

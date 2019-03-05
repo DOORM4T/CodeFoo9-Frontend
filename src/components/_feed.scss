@@ -28,6 +28,8 @@ $nav-gray: #7c7d7d;
     display:flex;
     flex-direction: column;
     .nav-btn {
+     cursor:pointer;
+
       border:none;
       background-color:#fff;
       color:$nav-gray;
@@ -35,21 +37,14 @@ $nav-gray: #7c7d7d;
       border-radius: 4px;
       width:40vw;
       max-width:300px;
-      font-size:16px;
+      font-size:24px;
       line-height:24px;
       text-align:left;
       label {
-        margin-left:1.5rem;
-      }
       cursor:pointer;
 
-      // &:nth-child(1) {
-      //   &:before {
-      //     font-family: FontAwesome;
-      //     content: "\f053";
-      //   }
-      // }
-
+        margin-left:1.6rem;
+      }
 
       &:hover {
         background-color:darken(#fff, 5);
@@ -60,22 +55,21 @@ $nav-gray: #7c7d7d;
         background-color:$red;
         color:#fff;
         font-weight:bold;
+        i{
+          color:#fff;
+          font-weight:0;
+        }
       }
 
       i {
         float:left;
         font-size:24px;
-        margin-right:0.8rem;
+        margin-left:-0.8rem;
         line-height:22px;
+        color:grey;
         font-weight: normal;
-
-        &.fa-play {
-          font-size:20px;
-        }
-        &.fa-file-alt {
-          font-size:20px;
-        }
       }
     }
   }
 }
+
