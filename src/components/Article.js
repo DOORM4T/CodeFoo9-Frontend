@@ -23,31 +23,36 @@ export default function Article(props) {
     // Fetched content
     <>
       <div id="article">
+
         {/* Image */}
-        <img src={images[2].url ? images[2].url : images[0].url} alt={metadata.slug} draggable={false} />
-        {/* Video Information */}
-        {
-          (props.data.contentType === 'video') ?
-            <div className="video-info">
-              <i className="fas fa-play-circle" />
-              <label> {convertDuration(metadata.duration)} </label>
-            </div>
-            : ''
-        }
+        <div className="image">
+          <img src={images[2].url ? images[2].url : images[0].url} alt={metadata.slug} draggable={false} />
+          {/* Video Information */}
+          {
+            (props.data.contentType === 'video') ?
+              <div className="video-info">
+                <i className="fas fa-play-circle" />
+                <label> {convertDuration(metadata.duration)} </label>
+              </div>
+              : ''
+          }
+        </div>
         <div id="info">
-          {/* Time since publication date */}
-          <label>{sincePublication(metadata.publishDate)}</label>
-          <label>
-            <span> - </span>
-            < i className="far fa-comment" />
-            {(commentCount > 0) ? commentCount : ''}
-          </label>
+          <div className='labels'>
+            {/* Time since publication date */}
+            <label>{sincePublication(metadata.publishDate)}</label>
+            <label>
+              <span> - </span>
+              < i className="far fa-comment" />
+              {(commentCount > 0) ? commentCount : ''}
+            </label>
+          </div>
           {/* Headline display. Object data names differ between Articles and Videos,
         so their respective properties must be chosen.*/}
           <h3>{metadata.headline ? metadata.headline : metadata.title}</h3>
         </div>
       </div>
-      <hr />
+      <hr className="line" />
     </>
   )
 }

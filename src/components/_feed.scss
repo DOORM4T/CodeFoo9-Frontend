@@ -5,7 +5,7 @@ $nav-gray: #7c7d7d;
   display:flex;
   flex-direction: row;
   margin-top:1.5rem;
-  
+
   .feed-article {
     &.fade {
       animation: fadeOut 0.3s;
@@ -27,12 +27,13 @@ $nav-gray: #7c7d7d;
     margin-right:1.5rem;
     display:flex;
     flex-direction: column;
+
     .nav-btn {
       cursor:pointer;
       border:none;
       background-color:#fff;
       color:$nav-gray;
-      padding: 12px 48px;
+      padding: 12px 3rem;
       border-radius: 4px;
       width:40vw;
       max-width:260px;
@@ -40,6 +41,7 @@ $nav-gray: #7c7d7d;
       line-height:24px;
       outline:none;
       text-align:left;
+
       label {
         cursor:pointer;
         margin-left:1.6rem;
@@ -67,6 +69,25 @@ $nav-gray: #7c7d7d;
         line-height:22px;
         color:grey;
         font-weight: normal;
+      }
+    }
+  }
+
+  // Media Query
+  @media (max-width: 775px) {
+    #nav {
+      position: absolute;;
+      padding:0.5rem;
+
+      .nav-btn {
+        width:10px;
+        padding:0.85rem 1.6rem;
+        
+
+        label {
+          word-spacing: 0;
+          display:none;
+        }
       }
     }
   }
