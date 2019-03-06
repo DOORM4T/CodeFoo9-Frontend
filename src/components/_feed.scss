@@ -8,13 +8,13 @@ $nav-gray: #7c7d7d;
 
   .feed-article {
     &.fade {
-      animation: fadeOut 0.3s;
+      animation: fadeOut 0.8s;
       @keyframes fadeOut {
         from { opacity: 1; }
         to   { opacity: 0; }
       }
     }
-    animation: fadein 0.2s;
+    animation: fadein 1s;
 
     @keyframes fadein {
       from { opacity: 0; }
@@ -27,7 +27,7 @@ $nav-gray: #7c7d7d;
     margin-right:1.5rem;
     display:flex;
     flex-direction: column;
-
+    
     .nav-btn {
       cursor:pointer;
       border:none;
@@ -76,20 +76,13 @@ $nav-gray: #7c7d7d;
   // Media Query
   @media (max-width: 775px) {
     #nav {
-      position: absolute;;
-      padding:0.5rem;
-
       .nav-btn {
         width:10px;
         padding:0.85rem 1.6rem;
-        
-
         label {
-          word-spacing: 0;
           display:none;
         }
       }
     }
   }
 }
-

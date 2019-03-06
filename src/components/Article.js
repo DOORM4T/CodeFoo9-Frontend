@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import moment from 'moment'
 import duration from 'moment-duration-format'
-import 'font-awesome/css/font-awesome.min.css'
-import './_article.scss'
+// import 'font-awesome/css/font-awesome.min.css'
+// import './_article.scss'
 
 export default function Article(props) {
   // Set Article state to fetched data values
@@ -16,8 +16,13 @@ export default function Article(props) {
       .then(res => res.json())
       .then(data => setCommentCount(data.content[0].count))
       .catch(err => { throw err })
+    setTimeout(() => document.querySelectorAll('.hidden').forEach(item => item.classList.remove('hidden')), 200);
+
   }, []);
 
+  const scrollTop = () => {
+    document.querySelector('#topbar').scrollIntoView({ behavior: 'smooth' });
+  }
 
   return (
     // Fetched content
@@ -25,12 +30,12 @@ export default function Article(props) {
       <div id="article">
         <meta name="objectData" content={JSON.stringify(props.data)} />
         {/* Image */}
-        <div className="image">
+        <div className="image" onClick={scrollTop}>
           <img src={images[2] ? images[2].url : (images[1] ? images[1].url : (images[0] ? images[0].url : ''))} alt={metadata.slug} draggable={false} />
           {/* Video Information */}
           {
             (!isNaN(metadata.duration)) ?
-              <div className="video-info">
+              <div className="video-info hidden">
                 <i className="fas fa-play-circle" />
                 <label> {convertDuration(metadata.duration)} </label>
               </div>
@@ -41,19 +46,17 @@ export default function Article(props) {
           <div className='labels'>
             {/* Time since publication date */}
             <label>{sincePublication(metadata.publishDate)}</label>
-            <label>
-              <span> - </span>
-              < i className="far fa-comment" />
-              {(commentCount > 0) ? commentCount : ''}
-            </label>
+            <span> - </span>
+            < i className="far fa-comment" onClick={scrollTop}></i>
+            {(commentCount > 0) ? <label className="commentCount" onClick={scrollTop}>{commentCount}</label> : ''}
           </div>
           {/* Headline display. Object data names differ between Articles and Videos,
         so their respective properties must be chosen.*/}
-          <h3>{metadata.headline ? metadata.headline : metadata.title}</h3>
+          <h3 onClick={scrollTop}>{metadata.headline ? metadata.headline : metadata.title}</h3>
         </div>
       </div>
       <hr className="line" />
-    </React.Fragment>
+    </React.Fragment >
   )
 }
 

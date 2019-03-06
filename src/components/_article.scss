@@ -3,11 +3,18 @@
   display:flex;
 
   img {
+    animation: fadein 1s;
+
+    @keyframes fadein {
+      from { opacity: 0; }
+      to   { opacity: 1; }
+    }
     color:#fff;
     border-radius:4px;
     height:145px;
     margin-right:1rem;
     cursor:pointer;
+    user-select:none;
     
     &:hover{
       opacity:0.75;
@@ -27,6 +34,10 @@
     border-radius:4px;
     padding:10px;
     cursor:pointer;
+    &.hidden{
+      display:none;
+    }
+
     i {
       color:#fff;
       cursor:pointer;
@@ -46,6 +57,7 @@
       color: #b51012;
       font-weight: bold;
       user-select:text;
+      cursor: pointer;
 
       span {
         margin: 0 0.5rem;
@@ -63,6 +75,8 @@
 
     .fa-comment {
       margin-right:5px;
+      cursor:pointer;
+      color: #b51012;
     } 
   }
 
@@ -73,16 +87,19 @@
   #article {
     display:flex;
     flex-direction: column;
-    margin-left:5rem;
 
     img {
       width:100%;
       height:100%;
+
     }
-  
+
     .video-info {
+      display:block;
       margin-top:-3.2rem;
       margin-left:0.5rem;
+
+
     }
   
     #info {
@@ -110,5 +127,15 @@
   }
   .line {
     margin-left:5rem;
+  }
+}
+
+.commentCount {
+  text-align:center;
+  position:absolute;
+  animation: fadeIn 0.8s;
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to   { opacity: 1; }
   }
 }
