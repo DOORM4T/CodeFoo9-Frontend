@@ -57,7 +57,10 @@
       color: #b51012;
       font-weight: bold;
       user-select:text;
-      cursor: pointer;
+      cursor: text;
+      &.commentCount {
+        cursor: pointer;
+      }
 
       span {
         margin: 0 0.5rem;
