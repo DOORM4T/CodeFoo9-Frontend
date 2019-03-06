@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react'
-import Moment from 'moment'
+import moment from 'moment'
+import duration from 'moment-duration-format'
 import 'font-awesome/css/font-awesome.min.css'
 import './_article.scss'
-
 
 export default function Article(props) {
   // Set Article state to fetched data values
@@ -23,13 +23,13 @@ export default function Article(props) {
     // Fetched content
     <>
       <div id="article">
-
+        <meta name="objectData" content={JSON.stringify(props.data)} />
         {/* Image */}
         <div className="image">
           <img src={images[2] ? images[2].url : (images[1] ? images[1].url : (images[0] ? images[0].url : ''))} alt={metadata.slug} draggable={false} />
           {/* Video Information */}
           {
-            (props.data.contentType === 'video') ?
+            (!isNaN(metadata.duration)) ?
               <div className="video-info">
                 <i className="fas fa-play-circle" />
                 <label> {convertDuration(metadata.duration)} </label>
@@ -59,8 +59,8 @@ export default function Article(props) {
 
 // Time since article was published
 const sincePublication = (date) => {
-  let pubDate = Moment.utc(date),
-    now = Moment.utc(),
+  let pubDate = moment.utc(date),
+    now = moment.utc(),
 
     diff = now.diff(pubDate, 'years');
   if (diff !== 0)
@@ -84,14 +84,7 @@ const sincePublication = (date) => {
 
 // Convert video duration from minutes to format of hh:mm:ss
 const convertDuration = (duration) => {
-  let hours = Math.trunc(duration / 3600)
-  let minutes = Math.trunc((duration - hours) / 60)
-  let seconds = duration - minutes * 60
-  if (hours < 10)
-    hours = '0' + hours;
-  if (minutes < 10)
-    minutes = '0' + minutes;
-  if (seconds < 10)
-    seconds = '0' + seconds;
-  return `${(hours + '').substring(0, 2)}:${(minutes + '').substring(0, 2)}:${(seconds + '').substring(0, 2)}`;
+  if (duration < 60)
+    return '0:' + duration;
+  return moment.duration(duration, 'seconds').format('h:mm:ss');
 }

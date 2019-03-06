@@ -34,29 +34,30 @@ export default function Feed() {
 
   // FETCH ARTICLES FROM API
   const fetchArticles = () => {
-    if (index <= 300) {
-      // Increment Start (Index) as page scrolls. Timeout is set to prevent loading errors.
-      setTimeout(() => setIndex(index + count), 500)
-
-      // Fetch data through CORS-anywhere as a proxy. 
-      const url = 'https://cors-anywhere.herokuapp.com/ign-apis.herokuapp.com/content/'
-      // console.log(`${url}?startIndex=${index}&count=${count}`)
-      fetch(`${url}?startIndex=${index}&count=${count}`)
-        .then(res => res.json())
-        .then(data => {
-          if (filter === 'latest')
-            // Latest
-            // Data is used to create a set, which purges duplicate items. 
-            // Spread operator used to turn Set back into array.
-            setFeed([...new Set(feed.concat(data.data))]);
-          else {
-            // Filter by Article or Video
-            setFeed([...new Set(feed.concat(data.data.filter(data => data.contentType === filter)))]);
-            // console.log(data.data.filter(data => data.contentType === filter))
-          }
-        })
-        .catch(err => { throw err })
+    if (index > 300) { // There seems to be around 300 unique articles from the provided API.
+      console.log("End of Unique Articles from API...");
     }
+    // Increment Start (Index) as page scrolls. Timeout is set to prevent loading errors.
+    setTimeout(() => setIndex(index + count), 1000)
+
+    // Fetch data through CORS-anywhere as a proxy. 
+    const url = 'https://cors-anywhere.herokuapp.com/ign-apis.herokuapp.com/content/'
+    // console.log(`${url}?startIndex=${index}&count=${count}`)
+    fetch(`${url}?startIndex=${index}&count=${count}`)
+      .then(res => res.json())
+      .then(data => {
+        if (filter === 'latest')
+          // Latest
+          // Data is used to create a set, which purges duplicate items. 
+          // Spread operator used to turn Set back into array.
+          setFeed([...new Set(feed.concat(data.data))]);
+        else {
+          // Filter by Article or Video
+          setFeed([...new Set(feed.concat(data.data.filter(data => data.contentType === filter)))]);
+          // console.log(data.data.filter(data => data.contentType === filter))
+        }
+      })
+      .catch(err => { throw err })
   }
 
   return (
@@ -68,11 +69,13 @@ export default function Feed() {
         <button className="nav-btn article" onClick={() => filterBy('article')}><i className="fa fa-file-alt" aria-hidden="true" /> <label>Articles</label></button>
       </div>
 
+      {/* Infinite scroll div -- loads content as user scrolls */}
       <InfiniteScroll
         id="feed-content"
         hasMore={true}
         threshold={500}
         loadMore={fetchArticles}
+        initialLoad={true}
       >
         {
           feed.map((item, i) => (
