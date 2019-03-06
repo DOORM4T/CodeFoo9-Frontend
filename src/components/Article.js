@@ -21,7 +21,7 @@ export default function Article(props) {
 
   return (
     // Fetched content
-    <>
+    <React.Fragment>
       <div id="article">
         <meta name="objectData" content={JSON.stringify(props.data)} />
         {/* Image */}
@@ -53,7 +53,7 @@ export default function Article(props) {
         </div>
       </div>
       <hr className="line" />
-    </>
+    </React.Fragment>
   )
 }
 
