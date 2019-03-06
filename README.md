@@ -6,7 +6,7 @@ My Front End application for IGN's Code Foo 9!
 
 ### Main Ingredients
 - React + Create React App (https://github.com/facebook/create-react-app)
-- Sass
+- Sass (https://sass-lang.com/libsass)
 - This API: https://ign-apis.herokuapp.com/
 - React Infinite Scroller (https://github.com/CassetteRocks/react-infinite-scroller)
 - Font Awesome (https://fontawesome.com/)
