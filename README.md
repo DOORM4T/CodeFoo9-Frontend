@@ -5,16 +5,13 @@ My Front End application for IGN's Code Foo 9!
 - Fully responsive front end webpage
 
 ### Main Ingredients
-- React
+- React + Create React App (https://github.com/facebook/create-react-app)
 - Sass
 - This API: https://ign-apis.herokuapp.com/
 - React Infinite Scroller (https://github.com/CassetteRocks/react-infinite-scroller)
 - Font Awesome (https://fontawesome.com/)
 - Moment.js (https://momentjs.com/)
 
-
-
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
 
