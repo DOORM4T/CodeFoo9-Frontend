@@ -1,4 +1,3 @@
-Code Foo 9 Application
 My Front End application for IGN's Code Foo 9!
 
 ### About
