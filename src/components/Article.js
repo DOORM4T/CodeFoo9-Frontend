@@ -26,7 +26,7 @@ export default function Article(props) {
 
         {/* Image */}
         <div className="image">
-          <img src={images[2].url ? images[2].url : images[0].url} alt={metadata.slug} draggable={false} />
+          <img src={images[2] ? images[2].url : (images[1] ? images[1].url : (images[0] ? images[0].url : ''))} alt={metadata.slug} draggable={false} />
           {/* Video Information */}
           {
             (props.data.contentType === 'video') ?

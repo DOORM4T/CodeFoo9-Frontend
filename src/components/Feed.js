@@ -18,7 +18,7 @@ export default function Feed() {
     document.querySelectorAll('.feed-article').forEach(item => {
       item.classList.add('fade');
     });
-    setTimeout(() => newState(type), 50);
+    setTimeout(() => newState(type), 100);
 
 
     // Style active filter button
@@ -36,7 +36,7 @@ export default function Feed() {
   const fetchArticles = () => {
     if (index <= 300) {
       // Increment Start (Index) as page scrolls. Timeout is set to prevent loading errors.
-      setTimeout(() => setIndex(index + count), 1000)
+      setTimeout(() => setIndex(index + count), 500)
 
       // Fetch data through CORS-anywhere as a proxy. 
       const url = 'https://cors-anywhere.herokuapp.com/ign-apis.herokuapp.com/content/'
@@ -46,10 +46,12 @@ export default function Feed() {
         .then(data => {
           if (filter === 'latest')
             // Latest
-            setFeed(feed.concat(data.data));
+            // Data is used to create a set, which purges duplicate items. 
+            // Spread operator used to turn Set back into array.
+            setFeed([...new Set(feed.concat(data.data))]);
           else {
             // Filter by Article or Video
-            setFeed(feed.concat(data.data.filter(data => data.contentType === filter)));
+            setFeed([...new Set(feed.concat(data.data.filter(data => data.contentType === filter)))]);
             // console.log(data.data.filter(data => data.contentType === filter))
           }
         })
@@ -69,7 +71,7 @@ export default function Feed() {
       <InfiniteScroll
         id="feed-content"
         hasMore={true}
-        threshold={1000}
+        threshold={500}
         loadMore={fetchArticles}
       >
         {
