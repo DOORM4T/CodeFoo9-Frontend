@@ -18,9 +18,10 @@ Note: This project requires Node.js & NPM to be installed on your machine.
 
 ### `npm install`
 Installs the project's dependencies.
-
+<br>
 ### `npm start`
 Starts the project. Your browser should open on [http://localhost:3000]after a few seconds. 
-
+<br>
+<br>
 That's all!
 
