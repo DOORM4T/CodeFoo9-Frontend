@@ -8,13 +8,13 @@ $nav-gray: #7c7d7d;
 
   .feed-article {
     &.fade {
-      animation: fadeOut 0.8s;
+      animation: fadeOut 0.8s forwards;
       @keyframes fadeOut {
         from { opacity: 1; }
         to   { opacity: 0; }
       }
     }
-    animation: fadein 1s;
+    animation: fadein 1s forwards;
 
     @keyframes fadein {
       from { opacity: 0; }
