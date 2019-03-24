@@ -16,7 +16,7 @@ export default function Article(props) {
       .then(res => res.json())
       .then(data => setCommentCount(data.content[0].count))
       .catch(err => { throw err })
-    setTimeout(() => document.querySelectorAll('.hidden').forEach(item => item.classList.remove('hidden')), 200);
+    setTimeout(() => document.querySelectorAll('.hidden').forEach(item => item.classList.remove('hidden')), 100);
 
   }, []);
 
@@ -87,6 +87,8 @@ const sincePublication = (date) => {
 
 // Convert video duration from minutes to format of hh:mm:ss
 const convertDuration = (duration) => {
+  if (duration < 10)
+    return '0:0' + duration;
   if (duration < 60)
     return '0:' + duration;
   return moment.duration(duration, 'seconds').format('h:mm:ss');

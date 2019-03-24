@@ -14,7 +14,7 @@ $nav-gray: #7c7d7d;
         to   { opacity: 0; }
       }
     }
-    animation: fadein 1s forwards;
+    animation: fadein 0.4s forwards;
 
     @keyframes fadein {
       from { opacity: 0; }

@@ -3,12 +3,7 @@
   display:flex;
 
   img {
-    animation: fadein 1s forwards;
-
-    @keyframes fadein {
-      from { opacity: 0; }
-      to   { opacity: 1; }
-    }
+ 
     color:#fff;
     border-radius:4px;
     height:145px;
